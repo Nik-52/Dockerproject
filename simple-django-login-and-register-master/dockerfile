@@ -1,0 +1,26 @@
+# Use an official Python runtime as a parent image
+FROM python:3.10
+
+# Set environment variables
+ENV PYTHONUNBUFFERED 1
+
+# Create app directory
+WORKDIR /app
+
+# Copy requirements.txt into the container
+COPY requirements.txt /app/requirements.txt
+
+# Install dependencies
+RUN pip install -r /app/requirements.txt
+
+# Copy the entire project into the container
+COPY . /app
+
+# Set working directory to the source folder (contains manage.py)
+WORKDIR /app/source
+
+COPY wait-for-it.sh /usr/local/bin/wait-for-it
+RUN chmod +x /usr/local/bin/wait-for-it
+
+# Start the application, waiting for DB to be ready, then run migrations and start the server
+CMD /usr/local/bin/wait-for-it db:3306 --timeout=30 --strict -- python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000 --noreload --verbosity 3

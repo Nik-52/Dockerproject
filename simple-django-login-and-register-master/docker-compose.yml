@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root          # Root password for MySQL
+      MYSQL_DATABASE: mydb              # Default database
+      MYSQL_USER: myuser                # MySQL user
+      MYSQL_PASSWORD: mypassword        # MySQL user password
+    ports:
+      - "3307:3306"                      # Exposing MySQL port
+    volumes:
+      - mysql_data:/var/lib/mysql       # Persist MySQL data to avoid data loss
+
+  web:
+    build: .                             # Build the image using the Dockerfile in the current directory
+    command: /usr/local/bin/wait-for-it db:3306 --timeout=30 --strict -- 
+      bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/app               # Mount the project directory to the container
+    ports:
+      - "8000:8000"                      # Exposing Django app port
+    depends_on:
+      - db                               # Ensure the db service is available before starting the web service
+
+volumes:
+  mysql_data:                            # Create a named volume for persistent storage

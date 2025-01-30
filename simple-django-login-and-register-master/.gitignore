@@ -1,0 +1,64 @@
+# Byte-compiled / cached files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+
+# Environment variables
+.env
+*.env
+
+# Django secret key and database settings
+settings_local.py
+config/settings_local.py
+
+# Database files
+*.sqlite3
+*.db
+
+# Logs
+logs/
+*.log
+*.out
+
+# Media and static files
+media/
+staticfiles/
+static/
+screenshots/
+# Node modules (if using frontend dependencies)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Compiled files
+*.so
+*.o
+*.a
+*.pyc
+**/locale/*/LC_MESSAGES/*.mo
+# IDE / Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+
+# macOS files
+.DS_Store
+
+# Docker files
+docker-compose.override.yml
+
+# Coverage reports
+htmlcov/
+.coverage
+*.cover
+*.lcov
+
+# Migrations (optional: keep if using version control for migrations)
+**/migrations/*.pyc
+**/migrations/__pycache__/
