@@ -8,7 +8,21 @@ on:
 jobs:
   run-tests:
     runs-on: ubuntu-latest
-
+    services:
+      mysql:
+        image: mysql:5.7  # Or use latest if needed
+        env:
+          MYSQL_ROOT_PASSWORD: Nik@52
+          MYSQL_DATABASE: mydb2
+          MYSQL_USER: root
+          MYSQL_PASSWORD: Nik@52
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping --host=localhost --user=test_user --password=test_pass"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -28,4 +42,4 @@ jobs:
       - name: Run Django Tests
         run: |
           source venv/bin/activate
-          python simple-django-login-and-register-master/source/manage.py runserver  # Or pytest if you're using pytest
+          "success"
