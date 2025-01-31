@@ -85,7 +85,7 @@ DATABASES = {
         # 'USER': 'myuser',  # This should match the MySQL user from docker-compose.yml
         # 'PASSWORD': 'mypassword',  # This should match the MySQL password from docker-compose.yml
         # 'HOST': 'db',  # This is the name of the MySQL service in docker-compose.yml
-        'HOST': 'localhost',  # This is the name of the MySQL service in docker-compose.yml
+        'HOST': 'os.getenv('DB_HOST', '127.0.0.1'),  # This is the name of the MySQL service in docker-compose.yml
         'PORT': '3306',
     }
 }
