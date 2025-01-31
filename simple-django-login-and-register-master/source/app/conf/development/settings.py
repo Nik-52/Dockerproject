@@ -2,6 +2,13 @@ import warnings
 from pathlib import Path
 
 from django.utils.translation import gettext_lazy as _
+import os
+from os import environ
+from os.path import join, dirname
+from dotenv import load_dotenv
+
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv()
 
 warnings.simplefilter("error", DeprecationWarning)
 
@@ -67,18 +74,18 @@ EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = CONTENT_DIR / "tmp" / "emails"
 EMAIL_HOST_USER = "test@example.com"
 DEFAULT_FROM_EMAIL = "test@example.com"
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mydb2',  # This should match the database name set in docker-compose.yml
-        'USER': 'root',  # This should match the MySQL user from docker-compose.yml
-        'PASSWORD': 'Nik@52',  # This should match the MySQL password from docker-compose.yml
+        'NAME': os.environ.get('MYSQL_DATABASE'),  # This should match the database name set in docker-compose.yml
+        'USER': os.environ.get('MYSQL_USER'),  # This should match the MySQL user from docker-compose.yml
+        'PASSWORD': os.environ.get('MYSQL_PASSWORD'),  # This should match the MySQL password from docker-compose.yml
         # 'NAME': 'mydb',  # This should match the database name set in docker-compose.yml
         # 'USER': 'myuser',  # This should match the MySQL user from docker-compose.yml
         # 'PASSWORD': 'mypassword',  # This should match the MySQL password from docker-compose.yml
         # 'HOST': 'db',  # This is the name of the MySQL service in docker-compose.yml
         'HOST': 'localhost',  # This is the name of the MySQL service in docker-compose.yml
-
         'PORT': '3306',
     }
 }
