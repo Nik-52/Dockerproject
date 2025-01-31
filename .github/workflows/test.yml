@@ -23,7 +23,7 @@ jobs:
         run: |
           python -m venv venv
           source venv/bin/activate
-          pip install -r simple-django-login-and-register-master/source/requirements.txt
+          pip install -r simple-django-login-and-register-master/requirements.txt
 
       - name: Run Django Tests
         run: |
