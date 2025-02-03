@@ -42,7 +42,6 @@ jobs:
       - name: Run Django Server
         run: |
           cd simple-django-login-and-register-master/source
-          source ../venv/bin/activate
           python source/manage.py makemigrations
           python source/manage.py migrate
           python source/manage.py runserver
