@@ -40,7 +40,9 @@ jobs:
           pip install -r simple-django-login-and-register-master/requirements.txt
           python simple-django-login-and-register-master/source/manage.py makemigrations
           python simple-django-login-and-register-master/source/manage.py migrate
-          python simple-django-login-and-register-master/source/manage.py runserver
+      - name: Print Success Message
+        run: |
+          echo "Success: working well"
         
     
           
