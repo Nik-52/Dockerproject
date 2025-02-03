@@ -40,6 +40,17 @@ jobs:
           pip install -r simple-django-login-and-register-master/requirements.txt
           python simple-django-login-and-register-master/source/manage.py makemigrations
           python simple-django-login-and-register-master/source/manage.py migrate
+          
+      - name: Run Flake8 (Code Style Check)
+        run: |
+          source venv/bin/activate
+          flake8 .
+
+      - name: Run Black (Code Formatting Check)
+        run: |
+          source venv/bin/activate
+          black --check .
+          
       - name: Print Success Message
         run: |
           echo "Success: working well"
