@@ -41,10 +41,9 @@ jobs:
         
       - name: Run Django Server
         run: |
-          cd simple-django-login-and-register-master/source
-          python source/manage.py makemigrations
-          python source/manage.py migrate
-          python source/manage.py runserver
+          python simple-django-login-and-register-master/source/manage.py makemigrations
+          python simple-django-login-and-register-master/source/manage.py migrate
+          python simple-django-login-and-register-master/source/manage.py runserver
 
           
           
