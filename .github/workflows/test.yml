@@ -38,13 +38,11 @@ jobs:
           python -m venv venv
           source venv/bin/activate
           pip install -r simple-django-login-and-register-master/requirements.txt
-        
-      - name: Run Django Server
-        run: |
           python simple-django-login-and-register-master/source/manage.py makemigrations
           python simple-django-login-and-register-master/source/manage.py migrate
           python simple-django-login-and-register-master/source/manage.py runserver
-
+        
+    
           
           
 
